@@ -8,6 +8,11 @@
       "name": "playwright-qa-toolkit",
       "source": "./playwright-qa-toolkit",
       "description": "A minimal QA toolkit for reviewing Playwright tests and analyzing test failures."
+    },
+    {
+      "name": "qamart-testing-plugin",
+      "source": "./qamart-testing-plugin",
+      "description": "QA Mart testing plugin: agents, skills, prompts, hooks and MCP configuration for planning, generating, reviewing and triaging Playwright + TypeScript tests."
     }
   ]
 }
