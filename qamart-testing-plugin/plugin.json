@@ -1,0 +1,92 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "qamart-testing-plugin",
+  "version": "1.0.0",
+  "description": "QA Mart testing plugin for GitHub Copilot: instructions, prompts, skills and agents for planning, generating, reviewing and triaging Playwright + TypeScript tests, plus a filesystem MCP server and guard, check and logging hooks.",
+  "author": {
+    "name": "MG Harisha"
+  },
+  "license": "MIT",
+  "keywords": ["playwright", "typescript", "testing", "qa", "e-commerce", "qamart"],
+  "readme": "./README.md",
+  "application": {
+    "name": "QA Mart",
+    "baseUrl": "http://localhost:3000",
+    "testFramework": "Playwright + TypeScript"
+  },
+  "functionalAreas": ["Login", "Product Catalog", "Cart", "Checkout", "Coupon Validation"],
+  "capabilities": {
+    "testPlanning": {
+      "description": "Reviews stories, identifies risks and produces a test strategy with manual test scenarios.",
+      "agents": ["./agents/test-planner.agent.md"],
+      "templates": ["./templates/test-case.md"]
+    },
+    "testGeneration": {
+      "description": "Generates Playwright TypeScript specs, Page Objects and fixtures that use data-testid locators and follow project conventions.",
+      "agents": ["./agents/test-generator.agent.md"],
+      "prompts": [
+        "./prompts/login-tests.prompt.md",
+        "./prompts/product-search-tests.prompt.md",
+        "./prompts/add-to-cart-tests.prompt.md",
+        "./prompts/checkout-tests.prompt.md"
+      ],
+      "skills": ["./skills/test-data-design/SKILL.md"]
+    },
+    "testReview": {
+      "description": "Reviews tests for flakiness, weak locators, missing assertions and convention violations.",
+      "agents": ["./agents/test-reviewer.agent.md"],
+      "hooks": ["./hooks/post-edit-checks.cjs"]
+    },
+    "bugTriage": {
+      "description": "Classifies failed executions as App Bug, Test Bug, Test Data Issue or Environment Issue and drafts defect reports.",
+      "agents": ["./agents/bug-triage.agent.md"],
+      "prompts": ["./prompts/bug-report.prompt.md"],
+      "templates": ["./templates/bug-report.md"]
+    },
+    "couponValidation": {
+      "description": "Generates boundary, eligibility, reuse, invalid and expired coupon tests for FLAT100, WELCOME50 and SAVE10.",
+      "skills": ["./skills/coupon-boundary-testing/SKILL.md"],
+      "prompts": ["./prompts/checkout-tests.prompt.md"]
+    },
+    "playwrightFailureAnalysis": {
+      "description": "Analyzes stack traces, screenshots and traces and classifies failures as App Bug, Automation Defect, Data Issue, Environment Issue or Flaky Test.",
+      "skills": ["./skills/playwright-failure-analysis/SKILL.md"]
+    }
+  },
+  "instructions": [
+    "./instructions/copilot-instructions.md",
+    "./instructions/specs.instructions.md",
+    "./instructions/page-objects.instructions.md"
+  ],
+  "prompts": [
+    "./prompts/login-tests.prompt.md",
+    "./prompts/product-search-tests.prompt.md",
+    "./prompts/add-to-cart-tests.prompt.md",
+    "./prompts/checkout-tests.prompt.md",
+    "./prompts/bug-report.prompt.md"
+  ],
+  "skills": [
+    "./skills/playwright-failure-analysis/SKILL.md",
+    "./skills/coupon-boundary-testing/SKILL.md",
+    "./skills/test-data-design/SKILL.md"
+  ],
+  "agents": [
+    "./agents/test-planner.agent.md",
+    "./agents/test-generator.agent.md",
+    "./agents/test-reviewer.agent.md",
+    "./agents/bug-triage.agent.md"
+  ],
+  "mcpServers": "./mcp/mcp.json",
+  "hooks": "./hooks/hooks.json",
+  "assets": {
+    "hookScripts": [
+      "./hooks/guard-app.cjs",
+      "./hooks/post-edit-checks.cjs",
+      "./hooks/log-tool.cjs"
+    ],
+    "templates": [
+      "./templates/test-case.md",
+      "./templates/bug-report.md"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "comment": "QA Mart Testing Plugin hooks. Scripts are Node.js CommonJS and read the tool event as JSON on stdin. PLUGIN_ROOT is the plugin folder.",
+  "hooks": {
+    "preToolUse": [
+      {
+        "type": "command",
+        "comment": "Blocks edits outside tests/, pages/ and qamart-testing-plugin/. Edits in app/, src/ and public/ are denied with a message.",
+        "matcher": "edit|create|patch",
+        "command": "node \"${PLUGIN_ROOT}/hooks/guard-app.cjs\"",
+        "timeoutSec": 10
+      }
+    ],
+    "postToolUse": [
+      {
+        "type": "command",
+        "comment": "Warns about waitForTimeout, missing assertions, CSS selectors where getByTestId fits, and XPath in edited specs and Page Objects. Never blocks.",
+        "matcher": "edit|create|patch",
+        "command": "node \"${PLUGIN_ROOT}/hooks/post-edit-checks.cjs\"",
+        "timeoutSec": 30
+      },
+      {
+        "type": "command",
+        "comment": "Appends timestamp, tool, agent, action and result for every tool call to hooks/qamart-plugin.log (override with QAMART_PLUGIN_LOG).",
+        "command": "node \"${PLUGIN_ROOT}/hooks/log-tool.cjs\"",
+        "timeoutSec": 5
+      }
+    ]
+  }
+}

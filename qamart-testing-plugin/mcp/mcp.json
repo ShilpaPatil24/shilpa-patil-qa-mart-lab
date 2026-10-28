@@ -1,0 +1,38 @@
+{
+  "servers": {
+    "qamart-filesystem": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "${workspaceFolder}"
+      ]
+    }
+  },
+  "inputs": [],
+  "qamartContext": {
+    "application": {
+      "name": "QA Mart",
+      "type": "e-commerce web application",
+      "baseUrl": "http://localhost:3000",
+      "startCommand": "npm start"
+    },
+    "testFramework": {
+      "name": "Playwright",
+      "language": "TypeScript",
+      "runCommand": "npx playwright test",
+      "typecheckCommand": "npm run typecheck",
+      "lintCommand": "npm run lint:specs",
+      "designVersions": ["v1", "v2"]
+    },
+    "areas": ["login", "product-catalog", "add-to-cart", "checkout", "coupon-validation"],
+    "paths": {
+      "specs": "tests",
+      "pageObjects": "pages",
+      "stories": "docs/stories",
+      "apiSpec": "docs/api/openapi.yaml",
+      "testData": "tests/test-data.ts"
+    }
+  }
+}

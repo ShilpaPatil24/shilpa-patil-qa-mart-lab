@@ -5,3 +5,4 @@ blob-report/
 reports/
 playwright/.auth/
 .github/hooks/tool-use.log
+qamart-testing-plugin/hooks/qamart-plugin.log
