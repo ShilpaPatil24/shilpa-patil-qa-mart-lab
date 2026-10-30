@@ -32,7 +32,7 @@ QA Mart is a small shop with login, a product catalog, a cart, checkout and coup
 ## Folder Structure
 
 ```
-qamart-testing-plugin/
+shilpa-qamart-plugin/
 ├── plugin.json        Manifest: metadata, capabilities and references to every component
 ├── README.md
 ├── instructions/      Always-on and file-scoped rules for Copilot
@@ -64,21 +64,21 @@ Prerequisites: Node.js 20 or newer, the QA Mart repository with dependencies ins
    {
      "chat.plugins.enabled": true,
      "chat.pluginLocations": {
-       "C:/projects/qa-mart-updated/qa-mart-lab-updated/qamart-testing-plugin": true
+      "C:/projects/qa-mart-updated/qa-mart-lab-updated/shilpa-qamart-plugin": true
      }
    }
    ```
 
 2. Reload VS Code, then check:
-   - Extensions, `@agentPlugins`, Installed: `qamart-testing-plugin` is listed.
+  - Extensions, `@agentPlugins`, Installed: `shilpa-qamart-plugin` is listed.
    - Chat, Open Customizations: the skills, agents and hooks appear.
    - Command Palette, **MCP: List Servers**: `qamart-filesystem` is running.
 
 3. Instructions and prompt files are not plugin components in some Copilot versions. If `/login-tests` or the instruction rules do not appear, copy them into the repository:
 
    ```powershell
-   Copy-Item qamart-testing-plugin/instructions/*.md .github/instructions/ -Force
-   Copy-Item qamart-testing-plugin/prompts/*.md .github/prompts/ -Force
+  Copy-Item shilpa-qamart-plugin/instructions/*.md .github/instructions/ -Force
+  Copy-Item shilpa-qamart-plugin/prompts/*.md .github/prompts/ -Force
    ```
 
    Rename `copilot-instructions.md` and place it at `.github/copilot-instructions.md`.
@@ -161,7 +161,7 @@ Registered in `hooks/hooks.json`. All scripts are Node.js CommonJS and read the 
 
 | Hook | Event | Behavior |
 |---|---|---|
-| `guard-app.cjs` | before edit, create or patch | Allows edits only under `tests/`, `pages/` and `qamart-testing-plugin/`. Denies `app/`, `src/` and `public/` with a message, and denies paths outside the allowed folders. |
+| `guard-app.cjs` | before edit, create or patch | Allows edits only under `tests/`, `pages/` and `shilpa-qamart-plugin/`. Denies `app/`, `src/` and `public/` with a message, and denies paths outside the allowed folders. |
 | `post-edit-checks.cjs` | after edit, create or patch | Warns with `file:line` about `waitForTimeout`, tests without `expect`, CSS selectors where `getByTestId` fits, and XPath. Never blocks. |
 | `log-tool.cjs` | after every tool call | Appends timestamp, tool, agent, action and result as JSON lines to `hooks/qamart-plugin.log`. Argument values are never logged. |
 
@@ -199,20 +199,20 @@ npm run lint:specs
 Check generated code with the plugin's validation hook:
 
 ```powershell
-node qamart-testing-plugin/hooks/post-edit-checks.cjs tests/lab/checkout.spec.ts pages/CheckoutPage.ts
+node shilpa-qamart-plugin/hooks/post-edit-checks.cjs tests/lab/checkout.spec.ts pages/CheckoutPage.ts
 ```
 
 Confirm the guard blocks application edits and allows test edits:
 
 ```powershell
-'{"toolName":"edit","toolArgs":{"filePath":"app/server.js"}}' | node qamart-testing-plugin/hooks/guard-app.cjs
-'{"toolName":"edit","toolArgs":{"filePath":"tests/lab/checkout.spec.ts"}}' | node qamart-testing-plugin/hooks/guard-app.cjs
+'{"toolName":"edit","toolArgs":{"filePath":"app/server.js"}}' | node shilpa-qamart-plugin/hooks/guard-app.cjs
+'{"toolName":"edit","toolArgs":{"filePath":"tests/lab/checkout.spec.ts"}}' | node shilpa-qamart-plugin/hooks/guard-app.cjs
 ```
 
 Read the tool log:
 
 ```powershell
-Get-Content qamart-testing-plugin/hooks/qamart-plugin.log -Tail 5
+Get-Content shilpa-qamart-plugin/hooks/qamart-plugin.log -Tail 5
 ```
 
 Example chat requests:

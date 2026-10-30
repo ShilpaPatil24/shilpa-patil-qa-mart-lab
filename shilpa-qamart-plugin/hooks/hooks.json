@@ -5,7 +5,7 @@
     "preToolUse": [
       {
         "type": "command",
-        "comment": "Blocks edits outside tests/, pages/ and qamart-testing-plugin/. Edits in app/, src/ and public/ are denied with a message.",
+        "comment": "Blocks edits outside tests/, pages/ and shilpa-qamart-plugin/. Edits in app/, src/ and public/ are denied with a message.",
         "matcher": "edit|create|patch",
         "command": "node \"${PLUGIN_ROOT}/hooks/guard-app.cjs\"",
         "timeoutSec": 10

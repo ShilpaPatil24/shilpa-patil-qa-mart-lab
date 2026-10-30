@@ -1,6 +1,6 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
-  "name": "qamart-testing-plugin",
+  "name": "shilpa-qamart-plugin",
   "version": "1.0.0",
   "description": "QA Mart testing plugin for GitHub Copilot: instructions, prompts, skills and agents for planning, generating, reviewing and triaging Playwright + TypeScript tests, plus a filesystem MCP server and guard, check and logging hooks.",
   "author": {

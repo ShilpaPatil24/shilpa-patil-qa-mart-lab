@@ -1,12 +1,12 @@
 // preToolUse hook: stop agents from editing application source.
-// Allowed: tests/, pages/, qamart-testing-plugin/.  Blocked by name: app/, src/, public/.
+// Allowed: tests/, pages/, shilpa-qamart-plugin/.  Blocked by name: app/, src/, public/.
 // Anything else (for example package.json or docs/) is also denied, because edits are allowed only in the list above.
 // Works with both harnesses: Copilot sends toolName/toolArgs, Local sends tool_name/tool_input.
 // A crash denies the tool call in the Copilot harness, so keep this script simple.
 const fs = require('node:fs');
 const path = require('node:path');
 
-const ALLOWED = ['tests', 'pages', 'qamart-testing-plugin'];
+const ALLOWED = ['tests', 'pages', 'shilpa-qamart-plugin'];
 const BLOCKED = ['app', 'src', 'public'];
 
 const EDIT_TOOL = /edit|create|write|replace|patch|insert/i;

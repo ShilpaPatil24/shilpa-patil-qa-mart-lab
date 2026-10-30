@@ -10,9 +10,14 @@
       "description": "A minimal QA toolkit for reviewing Playwright tests and analyzing test failures."
     },
     {
-      "name": "qamart-testing-plugin",
-      "source": "./qamart-testing-plugin",
+      "name": "shilpa-qamart-plugin",
+      "source": "./shilpa-qamart-plugin",
       "description": "QA Mart testing plugin: agents, skills, prompts, hooks and MCP configuration for planning, generating, reviewing and triaging Playwright + TypeScript tests."
+    },
+    {
+      "name": "qa-review-plugin",
+      "source": "./qa-review-plugin",
+      "description": "QA Test Lead agent that reviews user stories and acceptance criteria, generates positive, negative, boundary and integration test scenarios, identifies missing edge cases and recommends Playwright automation coverage."
     }
   ]
 }
